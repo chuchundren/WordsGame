@@ -10,6 +10,14 @@ import SwiftUI
 
 class WordsViewModel: ObservableObject {
 	@Published private var model = WordsGame()
+    
+    lazy private var formatter: DateComponentsFormatter = {
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .positional
+        formatter.allowedUnits = [.minute, .second]
+        formatter.zeroFormattingBehavior = .pad
+        return formatter
+    }()
 
 	var grid: [[Letter]] {
 		model.grid
@@ -24,6 +32,10 @@ class WordsViewModel: ObservableObject {
     }
 
 	init() {}
+    
+    func formattedTime(from timeInterval: TimeInterval) -> String {
+        return formatter.string(from: timeInterval) ?? ""
+    }
     
     func selectLetter(row: Int, col: Int) {
        model.selectLetter(row: row, col: col)

@@ -40,7 +40,7 @@ struct WordsGameView: View {
                     .font(.system(size: 24, weight: .medium))
                 Spacer()
                 
-                Text("\(Int(timeRemaining) / 60):\(Int(timeRemaining) % 60)")
+                Text("\(game.formattedTime(from: timeRemaining))")
                     .font(.system(size: 28, weight: .medium))
                     .onReceive(timer) { _ in
                         if timeRemaining > 0 {
