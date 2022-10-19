@@ -15,7 +15,7 @@ struct GameOverOverlay: View {
     
     var body: some View {
         ZStack {
-            Color(.systemBackground).opacity(0)
+            Color(ThemeManager.shared.baseColor.cgColor!).opacity(1)
                 .ignoresSafeArea()
             VStack {
                 Spacer()
@@ -24,9 +24,15 @@ struct GameOverOverlay: View {
                     .shadow(color: .black.opacity(0.4), radius: 2, x: 2, y: 2)
                     .overlay(
                         VStack {
+                            Spacer()
                             Text("Time's up")
+                                .font(.system(size: 40, weight: .semibold))
                             Text("Your score is")
+                                .font(.system(size: 17, weight: .regular))
                             Text("\(score)")
+                                .font(.system(size: 40, weight: .bold))
+                            
+                            Spacer()
                             
                             Button {
                                 withAnimation {
@@ -35,10 +41,21 @@ struct GameOverOverlay: View {
                                 onDismiss?()
                             } label: {
                                 Text("Try again")
+                                    .padding()
+                                    .font(.system(size: 20, weight: .semibold))
+                                    .foregroundColor(ThemeManager.shared.textColor)
+                                    .background {
+                                        Color(ThemeManager.shared.accentColor.cgColor!)
+                                            .cornerRadius(16)
+                                    }
                             }
+                            
+                            Spacer()
                         }
+                            .foregroundColor(ThemeManager.shared.textColor)
+                            .padding()
                     )
-                    .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.width * 0.9)
+                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width)
                 Spacer()
             }
         }
