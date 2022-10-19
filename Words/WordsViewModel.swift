@@ -30,6 +30,10 @@ class WordsViewModel: ObservableObject {
     var score: String {
         "Score: \(model.score)"
     }
+    
+    var scoreValue: Int {
+        model.score
+    }
 
 	init() {}
     

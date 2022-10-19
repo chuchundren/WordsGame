@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B0D5BD828FFFDE20009D87F /* GameOverOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0D5BD728FFFDE20009D87F /* GameOverOverlay.swift */; };
 		4B400F9828C3CE620039308B /* WordsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B400F9728C3CE620039308B /* WordsTests.swift */; };
 		4B6CCD7328B752580021F4B6 /* Letter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6CCD7228B752580021F4B6 /* Letter.swift */; };
 		4B78EFC028DF6AEE00725FBD /* Animation+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B78EFBF28DF6AEE00725FBD /* Animation+Extensions.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4B0D5BD728FFFDE20009D87F /* GameOverOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverOverlay.swift; sourceTree = "<group>"; };
 		4B400F9528C3CE620039308B /* WordsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WordsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B400F9728C3CE620039308B /* WordsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsTests.swift; sourceTree = "<group>"; };
 		4B6CCD7228B752580021F4B6 /* Letter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Letter.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				7657858A2870D96500320AFC /* WordsGameView.swift */,
+				4B0D5BD728FFFDE20009D87F /* GameOverOverlay.swift */,
 				4B78EFC228DF6F7A00725FBD /* LetterView.swift */,
 			);
 			path = View;
@@ -254,6 +257,7 @@
 				4B78EFC028DF6AEE00725FBD /* Animation+Extensions.swift in Sources */,
 				4B78EFD028E47D5100725FBD /* Theme.swift in Sources */,
 				765785892870D96500320AFC /* WordsApp.swift in Sources */,
+				4B0D5BD828FFFDE20009D87F /* GameOverOverlay.swift in Sources */,
 				4B78EFCC28E45BF300725FBD /* Array+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
