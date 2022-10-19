@@ -20,7 +20,82 @@ struct WordsGameView: View {
     @State private var showOverlay = false
     @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
-    var dragGesture: some Gesture {
+    var body: some View {
+        ZStack {
+            VStack {
+                header
+                
+                Spacer()
+                
+                wordsGrid
+                
+                Spacer()
+            }
+            .background(ThemeManager.shared.background)
+            
+            if showOverlay {
+                GameOverOverlay(score: game.scoreValue, showOverlay: $showOverlay, onDismiss: startNewGame)
+                    .zIndex(1)
+            }
+        }
+    }
+    
+    private var header: some View {
+        HStack {
+            Text("\(game.score)")
+                .font(.system(size: 24, weight: .medium))
+            Spacer()
+            
+            Text("\(game.formattedTime(from: timeRemaining))")
+                .font(.system(size: 28, weight: .medium))
+                .onReceive(timer) { _ in
+                    if timeRemaining > 0 {
+                        timeRemaining -= 1
+                    } else {
+                        timer.upstream.connect().cancel()
+                        
+                        withAnimation {
+                            showOverlay.toggle()
+                        }
+                    }
+                }
+            
+            Spacer()
+            
+            Button {
+                game.startNewGame()
+                timeRemaining = Constants.defaultTime
+            } label: {
+                Text("New game")
+                    .font(.system(size: 20, weight: .medium))
+            }
+        }
+        .foregroundColor(ThemeManager.shared.textColor)
+        .padding()
+    }
+    
+    private var wordsGrid: some View {
+        VStack {
+            Text(game.enteredWord)
+                .foregroundColor(ThemeManager.shared.textColor)
+                .font(.system(size: 40, weight: .semibold))
+                .frame(width: UIScreen.main.bounds.width, height: 44, alignment: .center)
+            VStack(alignment: .center) {
+                ForEach(0..<game.grid.count, id: \.self) { row in
+                    HStack {
+                        ForEach(game.grid[row]) { item in
+                            LetterView(letter: item)
+                                .background(self.rectReader(row: item.row, col: item.col))
+                        }
+                    }
+                }
+            }
+            .gesture(dragGesture)
+            .padding()
+        }
+    }
+    
+    private var dragGesture: some Gesture {
         DragGesture(minimumDistance: 0, coordinateSpace: .global)
             .onChanged { value in
                 if let index = locations.firstIndex(where: { location in
@@ -34,69 +109,7 @@ struct WordsGameView: View {
             }
     }
     
-    var body: some View {
-        ZStack {
-            VStack {
-                HStack {
-                    Text("\(game.score)")
-                        .font(.system(size: 24, weight: .medium))
-                    Spacer()
-                    
-                    Text("\(game.formattedTime(from: timeRemaining))")
-                        .font(.system(size: 28, weight: .medium))
-                        .onReceive(timer) { _ in
-                            if timeRemaining > 0 {
-                                timeRemaining -= 1
-                            } else {
-                                timer.upstream.connect().cancel()
-                                withAnimation {
-                                    showOverlay.toggle()
-                                }
-                            }
-                        }
-                    
-                    Spacer()
-                    
-                    Button {
-                        game.startNewGame()
-                        timeRemaining = Constants.defaultTime
-                    } label: {
-                        Text("New game")
-                            .font(.system(size: 20, weight: .medium))
-                    }
-                }
-                .foregroundColor(ThemeManager.shared.textColor)
-                .padding()
-                
-                Spacer()
-                
-                Text(game.enteredWord)
-                    .foregroundColor(ThemeManager.shared.textColor)
-                    .font(.system(size: 40, weight: .semibold))
-                    .frame(width: UIScreen.main.bounds.width, height: 44, alignment: .center)
-                VStack(alignment: .center) {
-                    ForEach(0..<game.grid.count, id: \.self) { row in
-                        HStack {
-                            ForEach(game.grid[row]) { item in
-                                LetterView(letter: item)
-                                    .background(self.rectReader(row: item.row, col: item.col))
-                            }
-                        }
-                    }
-                }
-                .gesture(dragGesture)
-                .padding()
-                Spacer()
-            }
-            .background(ThemeManager.shared.background)
-            
-            if showOverlay {
-                GameOverOverlay(score: game.scoreValue, showOverlay: $showOverlay, onDismiss: startNewGame)
-                    .zIndex(1)
-            }
-        }
-        
-    }
+    // MARK: Functions
     
     private func startNewGame() {
         game.startNewGame()
@@ -115,6 +128,8 @@ struct WordsGameView: View {
             return AnyView(Rectangle().fill(Color.clear))
         }
     }
+    
+    // MARK: - Constants
     
     private enum Constants {
         static let defaultTime: TimeInterval = 120
