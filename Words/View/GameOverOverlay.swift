@@ -10,8 +10,8 @@ import SwiftUI
 struct GameOverOverlay: View {
     private(set) var score: Int
     @Binding var showOverlay: Bool
+    @Binding var shouldReturnToGame: Bool
     var onDismiss: (() -> Void)?
-    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         ZStack {
@@ -33,21 +33,39 @@ struct GameOverOverlay: View {
                                 .font(.system(size: 40, weight: .bold))
                             
                             Spacer()
-                            
-                            Button {
-                                withAnimation {
-                                    showOverlay.toggle()
-                                }
-                                onDismiss?()
-                            } label: {
-                                Text("Try again")
-                                    .padding()
-                                    .font(.system(size: 20, weight: .semibold))
-                                    .foregroundColor(ThemeManager.shared.textColor)
-                                    .background {
-                                        Color(ThemeManager.shared.accentColor.cgColor!)
-                                            .cornerRadius(16)
+                            HStack {
+                                Button {
+                                    shouldReturnToGame.toggle()
+                                    withAnimation {
+                                        showOverlay.toggle()
                                     }
+                                } label: {
+                                    Text("Exit")
+                                        .padding()
+                                        .font(.system(size: 20, weight: .semibold))
+                                        .foregroundColor(ThemeManager.shared.textColor)
+                                        .background {
+                                            Color(ThemeManager.shared.accentColor.cgColor!)
+                                                .cornerRadius(16)
+                                        }
+                                }
+
+                                
+                                Button {
+                                    withAnimation {
+                                        showOverlay.toggle()
+                                    }
+                                    onDismiss?()
+                                } label: {
+                                    Text("Try again")
+                                        .padding()
+                                        .font(.system(size: 20, weight: .semibold))
+                                        .foregroundColor(ThemeManager.shared.textColor)
+                                        .background {
+                                            Color(ThemeManager.shared.accentColor.cgColor!)
+                                                .cornerRadius(16)
+                                        }
+                                }
                             }
                             
                             Spacer()
@@ -64,6 +82,6 @@ struct GameOverOverlay: View {
 
 struct GameOverOverlay_Previews: PreviewProvider {
     static var previews: some View {
-        GameOverOverlay(score: 54, showOverlay: .constant(false), onDismiss: nil)
+        GameOverOverlay(score: 54, showOverlay: .constant(false), shouldReturnToGame: .constant(true), onDismiss: nil)
     }
 }

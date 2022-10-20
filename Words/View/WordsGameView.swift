@@ -19,22 +19,38 @@ struct WordsGameView: View {
     @State private var timeRemaining = Constants.defaultTime
     @State private var showOverlay = false
     @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @State private var shouldStart = false
     
     var body: some View {
         ZStack {
-            VStack {
-                header
-                
-                Spacer()
-                
-                wordsGrid
-                
-                Spacer()
+            Button {
+                shouldStart = true
+            } label: {
+                Text("START")
+                    .foregroundColor(ThemeManager.shared.textColor)
+                    .font(.system(size: 40, weight: .medium))
             }
-            .background(ThemeManager.shared.background)
+
+            if shouldStart {
+                withAnimation {
+                    VStack {
+                        header
+                            .onAppear {
+                                startNewGame()
+                            }
+                        
+                        Spacer()
+                        
+                        wordsGrid
+                        
+                        Spacer()
+                    }
+                    .background(ThemeManager.shared.background)
+                }
+            }
             
             if showOverlay {
-                GameOverOverlay(score: game.scoreValue, showOverlay: $showOverlay, onDismiss: startNewGame)
+                GameOverOverlay(score: game.scoreValue, showOverlay: $showOverlay, shouldReturnToGame: $shouldStart, onDismiss: startNewGame)
                     .zIndex(1)
             }
         }
@@ -63,10 +79,9 @@ struct WordsGameView: View {
             Spacer()
             
             Button {
-                game.startNewGame()
-                timeRemaining = Constants.defaultTime
+                 showOverlay.toggle()
             } label: {
-                Text("New game")
+                Text("Finish")
                     .font(.system(size: 20, weight: .medium))
             }
         }
