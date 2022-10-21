@@ -13,11 +13,12 @@ struct WordsGame {
     private let lettersWithFrequenciesEng: [(char: Character, freq: Float)] = [("a", 8.4966), ("b", 2.0720), ("c", 4.5388), ("d", 3.3844), ("e", 11.1607), ("f", 1.8121), ("g", 2.4705), ("h", 3.0034), ("i", 7.5448), ("j", 0.1965), ("k", 1.1016), ("l", 5.4893), ("m", 3.0129), ("n", 6.6544), ("o", 7.1635), ("p", 3.1671), ("q", 0.1962), ("r", 7.5809), ("s", 5.7351), ("t", 6.9509), ("u", 3.6308), ("v", 1.0074), ("w", 1.2899), ("x", 0.2902), ("y", 1.7779), ("z", 0.2722)]
 
 	private(set) var grid = [[Letter]]()
-	private(set) var foundWords = [String]()
+	private(set) var foundWords = Set<String>()
+    private(set) var notExistingWords = Set<String>()
     private(set) var selectedLetters = [Letter]()
     private(set) var score = 0
-
-	init() {
+    
+    init() {
 		grid = createGrid(withSize: 5)
 	}
 
@@ -66,30 +67,32 @@ struct WordsGame {
        }
     }
 
-	mutating func enterWord() {
+    mutating func enterWord() -> String? {
         defer {
             deselectAll()
         }
         
 		guard selectedLetters.count > 1 else {
-			return
+			return nil
 		}
 
         let word = selectedLetters.map { String($0.value) }.joined()
         
-        if foundWords.contains(word) {
-            return
+        if foundWords.contains(word) || notExistingWords.contains(word) {
+            return nil
         }
         
-		if isRealWord(word) {
-			foundWords.append(word)
-            score += word.count
-		}
+        return word
     }
-
-	private func isRealWord(_ word: String) -> Bool {
-		true
-	}
+    
+    mutating func addWord(_ word: String, isRealWord: Bool) {
+        if isRealWord {
+            foundWords.insert(word)
+            score += word.count
+        } else {
+            notExistingWords.insert(word)
+        }
+    }
 
 	private mutating func removeLetter() {
         if let last = selectedLetters.last {
@@ -118,7 +121,7 @@ struct WordsGame {
                 var rangeStart: Float = 0
                 var rangeEnd: Float = 0
                 
-                for (letter, freq) in lettersWithFrequenciesRus {
+                for (letter, freq) in lettersWithFrequenciesEng {
                     rangeEnd += freq
                     if (rangeStart...rangeEnd).contains(random) {
                         group.append(Letter(letter, row: row, col: col))

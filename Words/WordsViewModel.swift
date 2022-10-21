@@ -11,6 +11,8 @@ import SwiftUI
 class WordsViewModel: ObservableObject {
 	@Published private var model = WordsGame()
     
+    private var api: API
+    
     lazy private var formatter: DateComponentsFormatter = {
         let formatter = DateComponentsFormatter()
         formatter.unitsStyle = .positional
@@ -34,27 +36,62 @@ class WordsViewModel: ObservableObject {
     var scoreValue: Int {
         model.score
     }
-
-	init() {}
+    
+    init(api: API = DictionaryAPI.shared) {
+        self.api = api
+    }
     
     func formattedTime(from timeInterval: TimeInterval) -> String {
         return formatter.string(from: timeInterval) ?? ""
     }
     
     func selectLetter(row: Int, col: Int) {
-       model.selectLetter(row: row, col: col)
+        model.selectLetter(row: row, col: col)
     }
     
-	func enterWord() {
-        model.enterWord()
+    func enterWord()  {
+        if let wordStr = model.enterWord() {
+            Task {
+                do {
+                    let words = try await api.fetchDefinition(forWord: wordStr)
+                    for word in words {
+                        if isValidPartOfSpeach(of: word) {
+                            DispatchQueue.main.async {
+                                self.model.addWord(wordStr, isRealWord: true)
+                            }
+                            
+                            return
+                        }
+                    }
+                } catch {
+                    print(error)
+                }
+                
+                DispatchQueue.main.async {
+                    self.model.addWord(wordStr, isRealWord: false)
+                }
+            }
+        }
     }
     
-	func endGame() {
+    func endGame() {
         model.endGame()
     }
     
     func startNewGame() {
         model.newGame()
+    }
+    
+    private func isValidPartOfSpeach(of word: WordResponse) -> Bool {
+        for meaning in word.meanings {
+            if meaning.partOfSpeech == "noun" ||
+                meaning.partOfSpeech == "adverb" ||
+                meaning.partOfSpeech == "verb" {
+                return true
+            }
+        }
+        
+        return false
     }
 
 }

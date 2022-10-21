@@ -42,34 +42,37 @@ class WordsTests: XCTestCase {
     func testWordEnterFails_whenSelectedLettersLessThanTwo() {
         var sut = WordsGame()
         sut.selectLetter(row: 0, col: 0)
-        sut.enterWord()
+        _ = sut.enterWord()
         
         XCTAssertEqual(sut.foundWords.count, 0)
         XCTAssertEqual(sut.selectedLetters.count, 0)
     }
     
-    func testWordEnterFails_whenWordAlreadyFound() {
+    func testWordEnterFails_whenWordAlreadyFound() throws {
         var sut = WordsGame()
         sut.selectLetter(row: 0, col: 0)
         sut.selectLetter(row: 1, col: 0)
         sut.selectLetter(row: 2, col: 1)
-        sut.enterWord()
+        
+        let first = try XCTUnwrap(sut.enterWord())
+        sut.addWord(first, isRealWord: true)
         
         sut.selectLetter(row: 0, col: 0)
         sut.selectLetter(row: 1, col: 0)
         sut.selectLetter(row: 2, col: 1)
-        sut.enterWord()
         
+        XCTAssertNil(sut.enterWord())
         XCTAssertEqual(sut.foundWords.count, 1)
         XCTAssertEqual(sut.selectedLetters.count, 0)
     }
     
-    func testWordEnterSuccesses() {
+    func testWordEnterSuccesses() throws {
         var sut = WordsGame()
         sut.selectLetter(row: 0, col: 0)
         sut.selectLetter(row: 1, col: 0)
         sut.selectLetter(row: 2, col: 1)
-        sut.enterWord()
+        let word = try XCTUnwrap(sut.enterWord())
+        sut.addWord(word, isRealWord: true)
         
         XCTAssertEqual(sut.foundWords.count, 1)
         XCTAssertEqual(sut.selectedLetters.count, 0)
@@ -83,7 +86,7 @@ class WordsTests: XCTestCase {
         sut.selectLetter(row: 0, col: 0)
         sut.selectLetter(row: 1, col: 0)
         sut.selectLetter(row: 2, col: 1)
-        sut.enterWord()
+        _ = sut.enterWord()
         
         sut.newGame()
         XCTAssertEqual(sut.foundWords.count, 0)
