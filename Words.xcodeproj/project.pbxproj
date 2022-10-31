@@ -16,6 +16,8 @@
 		4B78EFD028E47D5100725FBD /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B78EFCF28E47D5100725FBD /* Theme.swift */; };
 		4B8C2B772902C2EA004ADBB6 /* DictionaryAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8C2B762902C2EA004ADBB6 /* DictionaryAPI.swift */; };
 		4B8C2B792902DA91004ADBB6 /* WordResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8C2B782902DA91004ADBB6 /* WordResponse.swift */; };
+		4BBA8B82290FF3AF005FC1EE /* WordsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4BBA8B80290FF3AF005FC1EE /* WordsModel.xcdatamodeld */; };
+		4BBA8B84290FF8A9005FC1EE /* ScoreStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBA8B83290FF8A9005FC1EE /* ScoreStore.swift */; };
 		765785892870D96500320AFC /* WordsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765785882870D96500320AFC /* WordsApp.swift */; };
 		7657858B2870D96500320AFC /* WordsGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7657858A2870D96500320AFC /* WordsGameView.swift */; };
 		765785902870D96600320AFC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7657858F2870D96600320AFC /* Preview Assets.xcassets */; };
@@ -44,6 +46,8 @@
 		4B78EFCF28E47D5100725FBD /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		4B8C2B762902C2EA004ADBB6 /* DictionaryAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryAPI.swift; sourceTree = "<group>"; };
 		4B8C2B782902DA91004ADBB6 /* WordResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordResponse.swift; sourceTree = "<group>"; };
+		4BBA8B81290FF3AF005FC1EE /* WordsModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WordsModel.xcdatamodel; sourceTree = "<group>"; };
+		4BBA8B83290FF8A9005FC1EE /* ScoreStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreStore.swift; sourceTree = "<group>"; };
 		765785852870D96500320AFC /* Words.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Words.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		765785882870D96500320AFC /* WordsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsApp.swift; sourceTree = "<group>"; };
 		7657858A2870D96500320AFC /* WordsGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsGameView.swift; sourceTree = "<group>"; };
@@ -131,9 +135,11 @@
 				765785882870D96500320AFC /* WordsApp.swift */,
 				4B78EFCF28E47D5100725FBD /* Theme.swift */,
 				4B8C2B762902C2EA004ADBB6 /* DictionaryAPI.swift */,
+				4BBA8B83290FF8A9005FC1EE /* ScoreStore.swift */,
 				4B78EFC128DF6F6B00725FBD /* View */,
 				765785982870E4CA00320AFC /* WordsViewModel.swift */,
 				4B78EFBE28DF6AD000725FBD /* Model */,
+				4BBA8B80290FF3AF005FC1EE /* WordsModel.xcdatamodeld */,
 				4B78EFCA28E45BD600725FBD /* Extensions */,
 				7657858E2870D96600320AFC /* Preview Content */,
 			);
@@ -257,6 +263,8 @@
 			files = (
 				4B78EFC328DF6F7A00725FBD /* LetterView.swift in Sources */,
 				765785972870D99D00320AFC /* WordsGame.swift in Sources */,
+				4BBA8B84290FF8A9005FC1EE /* ScoreStore.swift in Sources */,
+				4BBA8B82290FF3AF005FC1EE /* WordsModel.xcdatamodeld in Sources */,
 				765785992870E4CA00320AFC /* WordsViewModel.swift in Sources */,
 				4B6CCD7328B752580021F4B6 /* Letter.swift in Sources */,
 				4B8C2B792902DA91004ADBB6 /* WordResponse.swift in Sources */,
@@ -524,6 +532,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		4BBA8B80290FF3AF005FC1EE /* WordsModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4BBA8B81290FF3AF005FC1EE /* WordsModel.xcdatamodel */,
+			);
+			currentVersion = 4BBA8B81290FF3AF005FC1EE /* WordsModel.xcdatamodel */;
+			path = WordsModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 7657857D2870D96500320AFC /* Project object */;
 }
