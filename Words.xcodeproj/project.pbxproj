@@ -111,6 +111,32 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		4BBA8B8529100A34005FC1EE /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				4B78EFCF28E47D5100725FBD /* Theme.swift */,
+				4BBA8B8629100A3F005FC1EE /* Services */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		4BBA8B8629100A3F005FC1EE /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				4B8C2B762902C2EA004ADBB6 /* DictionaryAPI.swift */,
+				4BBA8B83290FF8A9005FC1EE /* ScoreStore.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		4BBA8B8729100A48005FC1EE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				765785982870E4CA00320AFC /* WordsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		7657857C2870D96500320AFC = {
 			isa = PBXGroup;
 			children = (
@@ -133,11 +159,9 @@
 			isa = PBXGroup;
 			children = (
 				765785882870D96500320AFC /* WordsApp.swift */,
-				4B78EFCF28E47D5100725FBD /* Theme.swift */,
-				4B8C2B762902C2EA004ADBB6 /* DictionaryAPI.swift */,
-				4BBA8B83290FF8A9005FC1EE /* ScoreStore.swift */,
+				4BBA8B8529100A34005FC1EE /* Common */,
 				4B78EFC128DF6F6B00725FBD /* View */,
-				765785982870E4CA00320AFC /* WordsViewModel.swift */,
+				4BBA8B8729100A48005FC1EE /* ViewModel */,
 				4B78EFBE28DF6AD000725FBD /* Model */,
 				4BBA8B80290FF3AF005FC1EE /* WordsModel.xcdatamodeld */,
 				4B78EFCA28E45BD600725FBD /* Extensions */,
