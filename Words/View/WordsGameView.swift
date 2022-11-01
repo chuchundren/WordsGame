@@ -50,7 +50,8 @@ struct WordsGameView: View {
             }
             
             if showOverlay {
-                GameOverOverlay(score: game.scoreValue, showOverlay: $showOverlay, shouldReturnToGame: $shouldStart, onDismiss: startNewGame)
+                let gameOverVM = GameOverViewModel(newScore: game.scoreValue, foundWords: game.foundWords)
+                GameOverOverlay(viewModel: gameOverVM, showOverlay: $showOverlay, shouldReturnToGame: $shouldStart, onDismiss: startNewGame)
                     .zIndex(1)
             }
         }

@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-class WordsViewModel: ObservableObject {
+final class WordsViewModel: ObservableObject {
 	@Published private var model = WordsGame()
     
     private var api: API
@@ -35,6 +35,11 @@ class WordsViewModel: ObservableObject {
     
     var scoreValue: Int {
         model.score
+    }
+    
+    var foundWords: [String] {
+        model.foundWords
+            .sorted(by: { $0.count < $1.count} )
     }
     
     init(api: API = DictionaryAPI.shared) {
