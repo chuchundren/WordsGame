@@ -23,14 +23,20 @@ struct WordsGameView: View {
     
     var body: some View {
         ZStack {
-            Button {
-                shouldStart = true
-            } label: {
-                Text("START")
-                    .foregroundColor(ThemeManager.shared.textColor)
-                    .font(.system(size: 40, weight: .medium))
-            }
-
+            
+           StartView()
+            
+            Color.clear
+                .overlay(
+                    Button {
+                        shouldStart = true
+                    } label: {
+                        Text("START")
+                            .foregroundColor(ThemeManager.shared.textColor)
+                            .font(.system(size: 40, weight: .medium))
+                    }
+                )
+            
             if shouldStart {
                 withAnimation {
                     VStack {

@@ -50,7 +50,6 @@ final class GameOverViewModel: ObservableObject {
         do {
             try store.fetchStatistics().forEach { stat in
                 statsDict[stat.name ?? ""] = stat
-                print(statsDict)
             }
         } catch {
             print(error)

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4B0D5BD828FFFDE20009D87F /* GameOverOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0D5BD728FFFDE20009D87F /* GameOverOverlay.swift */; };
+		4B398A1B29146FF3006B5459 /* StatisticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B398A1A29146FF3006B5459 /* StatisticsViewModel.swift */; };
 		4B400F9828C3CE620039308B /* WordsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B400F9728C3CE620039308B /* WordsTests.swift */; };
 		4B6CCD7328B752580021F4B6 /* Letter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6CCD7228B752580021F4B6 /* Letter.swift */; };
 		4B78EFC028DF6AEE00725FBD /* Animation+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B78EFBF28DF6AEE00725FBD /* Animation+Extensions.swift */; };
@@ -19,6 +20,8 @@
 		4BBA8B82290FF3AF005FC1EE /* WordsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4BBA8B80290FF3AF005FC1EE /* WordsModel.xcdatamodeld */; };
 		4BBA8B8929100A92005FC1EE /* GameOverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBA8B8829100A92005FC1EE /* GameOverViewModel.swift */; };
 		4BBA8B8B2911279A005FC1EE /* StatisticsStoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBA8B8A2911279A005FC1EE /* StatisticsStoreProtocol.swift */; };
+		4BBA8BB82912F5E9005FC1EE /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBA8BB72912F5E9005FC1EE /* StartView.swift */; };
+		4BBA8BBA2912F6B5005FC1EE /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBA8BB92912F6B5005FC1EE /* StatisticsView.swift */; };
 		765785892870D96500320AFC /* WordsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765785882870D96500320AFC /* WordsApp.swift */; };
 		7657858B2870D96500320AFC /* WordsGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7657858A2870D96500320AFC /* WordsGameView.swift */; };
 		765785902870D96600320AFC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7657858F2870D96600320AFC /* Preview Assets.xcassets */; };
@@ -38,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		4B0D5BD728FFFDE20009D87F /* GameOverOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverOverlay.swift; sourceTree = "<group>"; };
+		4B398A1A29146FF3006B5459 /* StatisticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewModel.swift; sourceTree = "<group>"; };
 		4B400F9528C3CE620039308B /* WordsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WordsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B400F9728C3CE620039308B /* WordsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsTests.swift; sourceTree = "<group>"; };
 		4B6CCD7228B752580021F4B6 /* Letter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Letter.swift; sourceTree = "<group>"; };
@@ -50,6 +54,8 @@
 		4BBA8B81290FF3AF005FC1EE /* WordsModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WordsModel.xcdatamodel; sourceTree = "<group>"; };
 		4BBA8B8829100A92005FC1EE /* GameOverViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverViewModel.swift; sourceTree = "<group>"; };
 		4BBA8B8A2911279A005FC1EE /* StatisticsStoreProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsStoreProtocol.swift; sourceTree = "<group>"; };
+		4BBA8BB72912F5E9005FC1EE /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		4BBA8BB92912F6B5005FC1EE /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
 		765785852870D96500320AFC /* Words.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Words.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		765785882870D96500320AFC /* WordsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsApp.swift; sourceTree = "<group>"; };
 		7657858A2870D96500320AFC /* WordsGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsGameView.swift; sourceTree = "<group>"; };
@@ -98,6 +104,8 @@
 			isa = PBXGroup;
 			children = (
 				7657858A2870D96500320AFC /* WordsGameView.swift */,
+				4BBA8BB72912F5E9005FC1EE /* StartView.swift */,
+				4BBA8BB92912F6B5005FC1EE /* StatisticsView.swift */,
 				4B0D5BD728FFFDE20009D87F /* GameOverOverlay.swift */,
 				4B78EFC228DF6F7A00725FBD /* LetterView.swift */,
 			);
@@ -136,6 +144,7 @@
 			children = (
 				765785982870E4CA00320AFC /* WordsViewModel.swift */,
 				4BBA8B8829100A92005FC1EE /* GameOverViewModel.swift */,
+				4B398A1A29146FF3006B5459 /* StatisticsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -291,6 +300,7 @@
 				4B78EFC328DF6F7A00725FBD /* LetterView.swift in Sources */,
 				765785972870D99D00320AFC /* WordsGame.swift in Sources */,
 				4BBA8B8B2911279A005FC1EE /* StatisticsStoreProtocol.swift in Sources */,
+				4BBA8BB82912F5E9005FC1EE /* StartView.swift in Sources */,
 				4BBA8B82290FF3AF005FC1EE /* WordsModel.xcdatamodeld in Sources */,
 				765785992870E4CA00320AFC /* WordsViewModel.swift in Sources */,
 				4B6CCD7328B752580021F4B6 /* Letter.swift in Sources */,
@@ -299,10 +309,12 @@
 				7657858B2870D96500320AFC /* WordsGameView.swift in Sources */,
 				4B78EFC028DF6AEE00725FBD /* Animation+Extensions.swift in Sources */,
 				4B78EFD028E47D5100725FBD /* Theme.swift in Sources */,
+				4BBA8BBA2912F6B5005FC1EE /* StatisticsView.swift in Sources */,
 				765785892870D96500320AFC /* WordsApp.swift in Sources */,
 				4B8C2B772902C2EA004ADBB6 /* DictionaryAPI.swift in Sources */,
 				4B0D5BD828FFFDE20009D87F /* GameOverOverlay.swift in Sources */,
 				4B78EFCC28E45BF300725FBD /* Array+Extension.swift in Sources */,
+				4B398A1B29146FF3006B5459 /* StatisticsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
