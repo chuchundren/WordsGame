@@ -8,11 +8,13 @@
 import Foundation
 
 struct Letter: Identifiable {
+    
+    let id = UUID()
     let value: Character
     let row: Int
     let col: Int
     
-    let id = UUID()
+    var bonus: Bonus?
     var isSelected = false
     
     init(_ value: Character, row: Int, col: Int) {

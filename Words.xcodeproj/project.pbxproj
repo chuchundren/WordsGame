@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4B0D5BD828FFFDE20009D87F /* GameOverOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0D5BD728FFFDE20009D87F /* GameOverOverlay.swift */; };
 		4B398A1B29146FF3006B5459 /* StatisticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B398A1A29146FF3006B5459 /* StatisticsViewModel.swift */; };
+		4B398A3129184F3F006B5459 /* Bonus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B398A3029184F3F006B5459 /* Bonus.swift */; };
 		4B400F9828C3CE620039308B /* WordsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B400F9728C3CE620039308B /* WordsTests.swift */; };
 		4B6CCD7328B752580021F4B6 /* Letter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6CCD7228B752580021F4B6 /* Letter.swift */; };
 		4B78EFC028DF6AEE00725FBD /* Animation+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B78EFBF28DF6AEE00725FBD /* Animation+Extensions.swift */; };
@@ -42,6 +43,7 @@
 /* Begin PBXFileReference section */
 		4B0D5BD728FFFDE20009D87F /* GameOverOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverOverlay.swift; sourceTree = "<group>"; };
 		4B398A1A29146FF3006B5459 /* StatisticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewModel.swift; sourceTree = "<group>"; };
+		4B398A3029184F3F006B5459 /* Bonus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bonus.swift; sourceTree = "<group>"; };
 		4B400F9528C3CE620039308B /* WordsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WordsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B400F9728C3CE620039308B /* WordsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsTests.swift; sourceTree = "<group>"; };
 		4B6CCD7228B752580021F4B6 /* Letter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Letter.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				765785962870D99D00320AFC /* WordsGame.swift */,
+				4B398A3029184F3F006B5459 /* Bonus.swift */,
 				4B6CCD7228B752580021F4B6 /* Letter.swift */,
 				4B8C2B782902DA91004ADBB6 /* WordResponse.swift */,
 			);
@@ -310,6 +313,7 @@
 				4B78EFC028DF6AEE00725FBD /* Animation+Extensions.swift in Sources */,
 				4B78EFD028E47D5100725FBD /* Theme.swift in Sources */,
 				4BBA8BBA2912F6B5005FC1EE /* StatisticsView.swift in Sources */,
+				4B398A3129184F3F006B5459 /* Bonus.swift in Sources */,
 				765785892870D96500320AFC /* WordsApp.swift in Sources */,
 				4B8C2B772902C2EA004ADBB6 /* DictionaryAPI.swift in Sources */,
 				4B0D5BD828FFFDE20009D87F /* GameOverOverlay.swift in Sources */,

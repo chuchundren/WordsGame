@@ -11,6 +11,8 @@ struct WordsGame {
     private let lettersWithFrequenciesRus: [(char: Character, freq: Float)] = [("а", 7.998), ("б", 1.592), ("в", 4.533), ("г", 1.687), ("д", 2.977), ("е", 8.496), ("ж", 0.94), ("з", 1.641), ("и", 7.367), ("й", 1.208), ("к", 3.486), ("л", 4.343), ("м", 3.203), ("н", 6.7), ("о", 10.983), ("п", 2.804), ("р", 4.746), ("с", 5.473), ("т", 6.318), ("у", 2.615), ("ф", 0.267), ("х", 0.966), ("ц",0.486 ), ("ч", 1.45), ("ш", 0.718), ("щ", 0.361), ("ъ", 0.037), ("ы", 1.898), ("ь", 1.735), ("э", 0.331), ("ю", 0.638), ("я", 2.001)]
     
     private let lettersWithFrequenciesEng: [(char: Character, freq: Float)] = [("a", 8.4966), ("b", 2.0720), ("c", 4.5388), ("d", 3.3844), ("e", 11.1607), ("f", 1.8121), ("g", 2.4705), ("h", 3.0034), ("i", 7.5448), ("j", 0.1965), ("k", 1.1016), ("l", 5.4893), ("m", 3.0129), ("n", 6.6544), ("o", 7.1635), ("p", 3.1671), ("q", 0.1962), ("r", 7.5809), ("s", 5.7351), ("t", 6.9509), ("u", 3.6308), ("v", 1.0074), ("w", 1.2899), ("x", 0.2902), ("y", 1.7779), ("z", 0.2722)]
+    
+    let bonuses: [Bonus] = [.add(value: .two), .add(value: .three), .multiplyBy(value: .two), .multiplyBy(value: .three)]
 
 	private(set) var grid = [[Letter]]()
 	private(set) var foundWords = Set<String>()
@@ -112,7 +114,7 @@ struct WordsGame {
     }
 
 	private func createGrid(withSize size: Int) -> [[Letter]] {
-		var result = [[Letter]]()
+		var grid = [[Letter]]()
         
         for row in 0..<size {
             var group = [Letter]()
@@ -131,11 +133,35 @@ struct WordsGame {
                     rangeStart += freq
                 }
             }
-            result.append(group)
+            grid.append(group)
         }
-
-		return result
-	}
+        
+        var usedLetters = [(row: Int, col: Int)]()
+        
+        bonuses.forEach { bonus in
+            var randomRow = (0..<5).randomElement()
+            var randomCol = (0..<5).randomElement()
+            
+            // Check if any bonus is already assigned to this letter
+            if usedLetters.contains(where: {
+                $0.row == randomRow && $0.col == randomCol
+            }) {
+                while usedLetters.contains(where: {
+                    $0.row == randomRow && $0.col == randomCol
+                }) {
+                    randomRow = (0..<5).randomElement()
+                    randomCol = (0..<5).randomElement()
+                }
+            }
+            
+            if let randomRow = randomRow, let randomCol = randomCol {
+                grid[randomRow][randomCol].bonus = bonus
+                usedLetters.append((row: randomRow, col: randomCol))
+            }
+        }
+        
+        return grid
+    }
     
     private mutating func selectAt(row: Int, col: Int) {
         selectedLetters.append(grid[row][col])

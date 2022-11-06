@@ -92,4 +92,25 @@ class WordsTests: XCTestCase {
         XCTAssertEqual(sut.foundWords.count, 0)
         XCTAssertEqual(sut.selectedLetters.count, 0)
     }
+    
+    func testBonusesWereAssignedToLetters() {
+        let sut = WordsGame()
+        
+        var bonuses = [Bonus]()
+        
+        for row in sut.grid {
+            for letter in row {
+                if case let bonus = letter.bonus, let bonusUnwraped = bonus {
+                    bonuses.append(bonusUnwraped)
+                }
+            }
+        }
+        
+        XCTAssertEqual(bonuses.count, 4)
+        XCTAssert(bonuses.contains(.multiplyBy(value: .two)))
+        XCTAssert(bonuses.contains(.multiplyBy(value: .three)))
+        XCTAssert(bonuses.contains(.add(value: .two)))
+        XCTAssert(bonuses.contains(.add(value: .three)))
+    }
+    
 }
