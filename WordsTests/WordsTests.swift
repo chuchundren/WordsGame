@@ -48,32 +48,39 @@ class WordsTests: XCTestCase {
         XCTAssertEqual(sut.selectedLetters.count, 0)
     }
     
+    func testWordEnterSuccesses() throws {
+        var sut = WordsGame()
+        sut.selectLetter(row: 0, col: 0)
+        sut.selectLetter(row: 1, col: 0)
+        sut.selectLetter(row: 2, col: 1)
+        
+        let enter = sut.enterWord()
+        let word = try XCTUnwrap(enter.0)
+        let score = try XCTUnwrap(enter.1)
+        sut.addWord(word, isRealWord: true, score: score)
+        
+        XCTAssertEqual(sut.foundWords.count, 1)
+        XCTAssertEqual(sut.selectedLetters.count, 0)
+    }
+    
     func testWordEnterFails_whenWordAlreadyFound() throws {
         var sut = WordsGame()
         sut.selectLetter(row: 0, col: 0)
         sut.selectLetter(row: 1, col: 0)
         sut.selectLetter(row: 2, col: 1)
         
-        let first = try XCTUnwrap(sut.enterWord())
-        sut.addWord(first, isRealWord: true)
+        let enter = sut.enterWord()
+        let word = try XCTUnwrap(enter.0)
+        let score = try XCTUnwrap(enter.1)
+        sut.addWord(word, isRealWord: true, score: score)
         
         sut.selectLetter(row: 0, col: 0)
         sut.selectLetter(row: 1, col: 0)
         sut.selectLetter(row: 2, col: 1)
         
-        XCTAssertNil(sut.enterWord())
-        XCTAssertEqual(sut.foundWords.count, 1)
-        XCTAssertEqual(sut.selectedLetters.count, 0)
-    }
-    
-    func testWordEnterSuccesses() throws {
-        var sut = WordsGame()
-        sut.selectLetter(row: 0, col: 0)
-        sut.selectLetter(row: 1, col: 0)
-        sut.selectLetter(row: 2, col: 1)
-        let word = try XCTUnwrap(sut.enterWord())
-        sut.addWord(word, isRealWord: true)
-        
+        let enterTry = sut.enterWord()
+        XCTAssertNil(enterTry.0)
+        XCTAssertNil(enterTry.1)
         XCTAssertEqual(sut.foundWords.count, 1)
         XCTAssertEqual(sut.selectedLetters.count, 0)
     }

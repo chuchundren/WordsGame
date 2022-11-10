@@ -55,14 +55,15 @@ final class WordsViewModel: ObservableObject {
     }
     
     func enterWord()  {
-        if let wordStr = model.enterWord() {
+        let result = model.enterWord()
+        if let wordStr = result.0, let score = result.1 {
             Task {
                 do {
                     let words = try await api.fetchDefinition(forWord: wordStr)
                     for word in words {
                         if isValidPartOfSpeach(of: word) {
                             DispatchQueue.main.async {
-                                self.model.addWord(wordStr, isRealWord: true)
+                                self.model.addWord(wordStr, isRealWord: true, score: score)
                             }
                             
                             return
@@ -73,7 +74,7 @@ final class WordsViewModel: ObservableObject {
                 }
                 
                 DispatchQueue.main.async {
-                    self.model.addWord(wordStr, isRealWord: false)
+                    self.model.addWord(wordStr, isRealWord: false, score: nil)
                 }
             }
         }

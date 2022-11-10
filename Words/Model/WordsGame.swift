@@ -69,28 +69,30 @@ struct WordsGame {
        }
     }
 
-    mutating func enterWord() -> String? {
+    mutating func enterWord() -> (String?, Int?) {
         defer {
             deselectAll()
         }
         
 		guard selectedLetters.count > 1 else {
-			return nil
+			return (nil, nil)
 		}
 
         let word = selectedLetters.map { String($0.value) }.joined()
         
         if foundWords.contains(word) || notExistingWords.contains(word) {
-            return nil
+            return (nil, nil)
         }
         
-        return word
+        let score = calculateScore()
+        
+        return (word, score)
     }
     
-    mutating func addWord(_ word: String, isRealWord: Bool) {
-        if isRealWord {
+    mutating func addWord(_ word: String, isRealWord: Bool, score: Int?) {
+        if isRealWord, let score = score {
             foundWords.insert(word)
-            score += word.count
+            self.score += score
         } else {
             notExistingWords.insert(word)
         }
@@ -111,6 +113,27 @@ struct WordsGame {
                 grid[row][col].isSelected = false
             }
         }
+    }
+    
+    private func calculateScore() -> Int {
+        var score = 0
+        
+        for (index, letter) in selectedLetters.enumerated() {
+            var temp = index + 1
+            
+            if let bonus = letter.bonus {
+                switch bonus {
+                case let .multiplyBy(value: value):
+                    temp *= value.rawValue
+                case let .add(value: value):
+                    temp += value.rawValue
+                }
+            }
+            
+            score += temp
+        }
+        
+        return score
     }
 
 	private func createGrid(withSize size: Int) -> [[Letter]] {
