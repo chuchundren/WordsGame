@@ -18,6 +18,22 @@ struct LetterView: View {
             Text(String(letter.value))
                 .font(.system(size: 40))
                 .foregroundColor(ThemeManager.shared.letterColor)
+            
+            if let bonus = letter.bonus {
+                HStack {
+                    Spacer()
+                    VStack {
+                        ZStack {
+                            Circle()
+                                .foregroundColor(ThemeManager.shared.accentColor2)
+                            Text(label(for: bonus))
+                                .foregroundColor(ThemeManager.shared.letterColor)
+                        }
+                        .frame(width: 24, height: 24, alignment: .topTrailing)
+                        Spacer()
+                    }
+                }
+            }
         }
         .rotationEffect(Angle(degrees: letter.isSelected ? Constants.rotationDegrees : 0))
         .animation(
@@ -34,6 +50,15 @@ struct LetterView: View {
         )
 
         .aspectRatio(1, contentMode: .fit)
+    }
+    
+    private func label(for bonus: Bonus) -> String {
+        switch bonus {
+        case .multiplyBy(let value):
+            return "x\(value.rawValue)"
+        case .add(let value):
+            return "c\(value.rawValue)"
+        }
     }
     
     enum Constants {
