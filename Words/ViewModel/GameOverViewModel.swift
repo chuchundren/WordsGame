@@ -20,8 +20,6 @@ final class GameOverViewModel: ObservableObject {
         self.newScore = newScore
         self.foundWords = foundWords
         self.store = store
-        
-        saveNewStatistics()
     }
     
     func saveNewStatistics() {

@@ -55,6 +55,7 @@ struct GameOverOverlay: View {
         }
         .onAppear {
             viewModel.fetchStatistics()
+            viewModel.saveNewStatistics()
         }
     }
     
